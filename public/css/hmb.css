@@ -1,0 +1,43 @@
+/**
+ * Responsible sidebar menu.
+ * Create a sidebar by adding a ul with .hmb-sidebar inside a bootstrap .col-md-2 div.
+ */
+.hmb-sidebar > li {
+    margin-bottom: 7px;
+    margin-right: 10px;
+    display: inline-block;
+}
+.hmb-sidebar a {
+    padding: 5px;
+    border-bottom: 1px solid transparent;
+    color: grey;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+.hmb-sidebar a:hover {
+    color: #428bca;
+    border-color: inherit;
+    text-decoration: none;
+}
+.hmb-sidebar a:focus {
+    outline: 0;
+    text-decoration: none;
+}
+@media screen and (min-width: 992px) {
+    .hmb-sidebar > li {
+        margin-right: 0px;
+        display: list-item;
+    }
+    .hmb-sidebar a {
+        padding: 5px 0px 5px 5px;
+        border-left: 1px solid transparent;
+        border-bottom: none;
+    }
+}
+
+/**
+ * Add a small margin to tab bodies.
+ */
+.nav-tabs {
+    margin-bottom: 15px;
+}
