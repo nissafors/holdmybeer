@@ -39,6 +39,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('hops', 'Ingredients\HopController');
     Route::resource('yeastclasses', 'Ingredients\YeastClassController');
     Route::resource('yeasts', 'Ingredients\YeastController');
+    Route::get('yeasts/form/{form}', 'Ingredients\YeastController@index');
     Route::resource('finings', 'Ingredients\FiningController');
     Route::resource('watertreatments', 'Ingredients\WaterTreatmentController');
     Route::resource('acids', 'Ingredients\AcidController');

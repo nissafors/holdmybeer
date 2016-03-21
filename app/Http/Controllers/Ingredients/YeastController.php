@@ -31,9 +31,23 @@ class YeastController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($form = "all")
     {
-        $yeasts = Yeast::with('vendor', 'yeastClass')->get();
+        $yeasts = [];
+        switch($form) {
+            case "all":
+                $yeasts = Yeast::with('vendor', 'yeastClass')->get();
+                break;
+            case "dry":
+                $yeasts = Yeast::with('vendor', 'yeastClass')->where('form', 'Dry')->get();
+                break;
+            case "liquid":
+                $yeasts = Yeast::with('vendor', 'yeastclass')->where('form', 'Liquid')->get();
+                break;
+            case "agar":
+                $yeasts = Yeast::with('vendor', 'yeastclass')->where('form', 'Agar')->get();
+                break;
+        }
 
         return response()->json($yeasts);
     }

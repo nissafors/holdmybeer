@@ -8,6 +8,12 @@ $(document).ready(function() {
     var URL_ROOT = '/holdmybeer/public';
 
     /*********************************************************
+     * EVENTS
+     *********************************************************/
+
+    var populateSelectFinishedEvent = new Event('populateSelectFinished');
+
+    /*********************************************************
      * DATA SUPPLIERS
      *********************************************************/
 
@@ -448,19 +454,22 @@ $(document).ready(function() {
      * @param selectedArray - An array of values that corresponds to the values of the items that should be selected
      */
     function populateSelects(context, selectedArray) {
-        var selects = $(context).find('select');
-        populateNextSelect(selects, selectedArray);
+        var selects = $(context).find('select[data-resource]');
+        populateNextSelect(context, selects, selectedArray);
     }
 
     /**
      * Populate comboboxes in boxes from ajax recursively
      *
+     * @param context - The context in which the selects reside
      * @param selects - An ajax object or array of selects to populate
      * @param selectedArray - An array of values that corresponds to the values of the items that should be selected
      */
-    function populateNextSelect(selects, selectedArray) {
-        if (selects.length < 1)
+    function populateNextSelect(context, selects, selectedArray) {
+        if (selects.length < 1) {
+            context.dispatchEvent(populateSelectFinishedEvent);
             return;
+        }
         $(selects[0]).empty();
         var url = '/' + $(selects[0]).data('resource');
         ajaxGet(url,
@@ -480,7 +489,7 @@ $(document).ready(function() {
                     selectedArray = selectedArray.slice(1);
                 }
 
-                populateNextSelect(selects.slice(1), selectedArray);
+                populateNextSelect(context, selects.slice(1), selectedArray);
             },
             function(status, err) {
                 // Ajax error: close any modals and report error
@@ -627,6 +636,51 @@ $(document).ready(function() {
      *********************************************************/
 
     /**
+     * Creator: Populate the fermentable select when the type select changes
+     */
+    $('#creator-select-fermentable-type').change(function() {
+        var resource = $(this).val();
+        $('#creator-select-fermentable').data('resource', resource);
+        populateSelects(document.getElementById('creator-fermentables'));
+    });
+
+    /**
+     * Creator: Update the alhpa acid field in the hops tab when a new hop i selected
+     */
+    $('#creator-select-hops').change(function() { updateAAField(this) });
+
+    /**
+     * Creator: Update the alpha acid field in the hops tab when finished populating selects
+     */
+    $(document.getElementById('creator-hops')).on('populateSelectFinished', function() {
+        updateAAField(document.getElementById('creator-select-hops'));
+    });
+
+    $(document.getElementById('creator-select-cue-type')).change(function() {
+        document.getElementById('creator-cue-target-unit').firstChild.nodeValue = this.value;
+    });
+
+    /**
+     * Creator: Update the alpha acid field in the hops tab
+     * @param select
+     */
+    function updateAAField(select) {
+        var resource = select.dataset.resource;
+        var id = $(select).val();
+        var url = '/' + resource + '/' + id;
+        ajaxGet(url, function(data) {
+                $('#creator-alpha-acid').val(data.typicalAA);
+            },
+            alertServerError);
+    }
+
+    $('#creator-select-yeast-form').change(function() {
+        var resource = $(this).val();
+        $('#creator-select-yeast').data('resource', 'yeasts/form/' + resource);
+        populateSelects(document.getElementById('creator-yeasts'));
+    });
+
+    /**
      * Add handlers for the add ingredients submit events
      */
     $('.ingredient-edit-form').submit(addIngredient);
@@ -636,6 +690,17 @@ $(document).ready(function() {
      */
     $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
         switch(e.target) {
+            // Creator tabs
+            case(document.getElementById('creator-fermentables-tab')):
+                populateSelects(document.getElementById('creator-fermentables'));
+                break;
+            case(document.getElementById('creator-hops-tab')):
+                populateSelects(document.getElementById('creator-hops'));
+                break;
+            case(document.getElementById('creator-yeasts-tab')):
+                populateSelects(document.getElementById('creator-yeasts'));
+                break;
+            // Ingredient Manager tabs
             case(document.getElementById('ingman-fermentables-tab')):
                 updateTable('grains');
                 updateTable('maltextracts');

@@ -1,24 +1,21 @@
 {{----------------------------------------------------------------------
 || Yeast tab content
 ----------------------------------------------------------------------}}
-<div role="tabpanel" class="tab-pane" id="creator-yeast">
+<div role="tabpanel" class="tab-pane" id="creator-yeasts">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-4 form-group">
                     <label for="yeast-form">Form <a href="#"><span class="glyphicon glyphicon-question-sign"></span></a></label>
-                    <select class="form-control" name="yeast-form" id="yeast-form">
+                    <select class="form-control" name="yeast-form" id="creator-select-yeast-form">
                         <option value="liquid">Liquid</option>
                         <option value="dry">Dry</option>
+                        <option value="agar">Agar</option>
                     </select>
                 </div>
                 <div class="col-sm-4 form-group">
                     <label for="yeast-strain">Yeast strain <a href="#"><span class="glyphicon glyphicon-question-sign"></span></a></label>
-                    <select class="form-control combobox" name="yeast-strain" id="yeast-strain">
-                        <option label="new"></option>
-                        <option label="white-labs-wlp001-california-ale">White Labs WLP001 California Ale</option>
-                        <option label="wyeast-1007-german-ale">Wyeast 1007 German Ale</option>
-                        <option label="any">Etc</option>
+                    <select class="form-control" data-resource="yeasts/form/liquid" name="yeast-strain" id="creator-select-yeast">
                     </select>
                 </div>
                 <div class="col-sm-4 form-group">

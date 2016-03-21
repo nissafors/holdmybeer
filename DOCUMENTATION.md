@@ -34,7 +34,7 @@ accordingly.
 
 
 ## The Creator
-Not implemented. A roadmap is available in the README.md file.
+Work in progress.
 
 
 ## The Guide
@@ -49,6 +49,10 @@ Not implemented. A roadmap is available in the README.md file.
 The public/js/hmb.js file is responsible for populating tables and forms and submitting creates, updates and
 deletes to the controllers. It utilizes a few markup properties documented here. For more information see
 function documentation and comments in the code.
+
+## Javascript And Markup
+The Javascript is cluttered inside the hmb.js file in public/js/. Here are some clues on how to use it, and
+what markup is required:
 
 ### Classes
 * can-have-error             - A div nesting label and input/select/etc elements that needs to be able to show
@@ -66,6 +70,7 @@ function documentation and comments in the code.
 * ingman-[resource]-tbody    - An empty tbody element that will be filled with data by the updateTable()
                                function using data from getTableData(). That function must be updated
                                for each new ingman-[resource]-tbody added.
+* creator-*                  - Private id's for elements in The Creator
 
 ### Properties
 * data-error                 - Resource that can generate a validation error message, see .can-have-error.
@@ -78,9 +83,13 @@ function documentation and comments in the code.
 4. Add switch cases in the getFormData() and getTableData() functions in the public/js/hmb.js file.
 5. Add a switch case to the tab change event handler in public/js/hmb.js.
 
-## AJAX auto-populating select
-0: In the view; add a data-resource="[resource]" property (optionally with .nullable) to the select.
-1: Either add a call to populateNextSelect() or add a handler that calls populateSelects() in public/js/hmb.js.
+### AJAX auto-populating select
+0. In the view; add a data-resource="[resource]" property (optionally with .nullable) to the select.
+1. Either add a call to populateNextSelect() or add a handler that calls populateSelects() in public/js/hmb.js.
+
+## CSS
+There's a small public/css/hmb.css file for custom CSS. Most notably it has a responsible sidebar menu. See the
+source for documentation.
 
 
 ## More to come

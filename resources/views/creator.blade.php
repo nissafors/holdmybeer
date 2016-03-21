@@ -2,16 +2,15 @@
 @include('layouts._page_header')
 
 @section('content')
-<form>
+<form accept-charset="UTF-8" class="creator-form">
     @include('creator._tabs')
     <div class="tab-content">
-        @include('creator._info')
-        @include('creator._target')
-        @include('creator._extract')
-        @include('creator._hops')
-        @include('creator._yeast')
-        @include('creator._fermentation')
-        @include('creator._settings')
+            @include('creator._info')
+            @include('creator._targets')
+            @include('creator._fermentables')
+            @include('creator._hops')
+            @include('creator._yeasts')
+            @include('creator._fermentation')
     </div><!-- tab-content -->
 </form>
 @endsection

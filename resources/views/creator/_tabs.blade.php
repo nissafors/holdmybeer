@@ -1,28 +1,23 @@
 {{----------------------------------------------------------------------
 || Tabs
 ----------------------------------------------------------------------}}
-<ul class="nav nav-pills" role="tablist">
+<ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
-        <a href="#creator-recipe-info" aria-controls="recipe-info" role="tab" data-toggle="tab">Recipe info</a>
+        <a id="creator-recipe-info-tab" href="#creator-recipe-info" aria-controls="recipe-info" role="tab" data-toggle="tab">Recipe info</a>
     </li>
     <li role="presentation">
-        <a href="#creator-targets" aria-controls="targets" role="tab" data-toggle="tab">Targets</a>
+        <a id="creator-targets-tab" href="#creator-targets" aria-controls="targets" role="tab" data-toggle="tab">Targets</a>
     </li>
     <li role="presentation">
-        <a href="#creator-extract" aria-controls="extract" role="tab" data-toggle="tab">Extract</a>
+        <a id="creator-fermentables-tab" href="#creator-fermentables" aria-controls="extract" role="tab" data-toggle="tab">Fermentables</a>
     </li>
     <li role="presentation">
-        <a href="#creator-hops" aria-controls="hops" role="tab" data-toggle="tab">Hops</a>
+        <a id="creator-hops-tab" href="#creator-hops" aria-controls="hops" role="tab" data-toggle="tab">Hops</a>
     </li>
     <li role="presentation">
-        <a href="#creator-yeast" aria-controls="yeast" role="tab" data-toggle="tab">Yeast</a>
+        <a id="creator-yeasts-tab" href="#creator-yeasts" aria-controls="yeast" role="tab" data-toggle="tab">Yeasts</a>
     </li>
     <li role="presentation">
-        <a href="#creator-fermentation" aria-controls="fermentation" role="tab" data-toggle="tab">Fermentation</a>
-    </li>
-    <li role="presentation">
-        <a href="#creator-settings" aria-controls="settings" role="tab" data-toggle="tab">
-            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span><span class="sr-only">Settings</span>
-        </a>
+        <a id="creator-fermentation-tab" href="#creator-fermentation" aria-controls="fermentation" role="tab" data-toggle="tab">Fermentation</a>
     </li>
 </ul><!-- nav nav-pills -->
